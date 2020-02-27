@@ -8,8 +8,8 @@ from flask import jsonify, request
 
 # from app.web import web 或者
 from app.web import web
-from helper import is_isbn_or_key
-from yushu_book import YuShuBook
+from app.libs.helper import is_isbn_or_key
+from app.spider.yushu_book import YuShuBook
 from app.forms.book import SearchForm
 
 __author__ = '27'
@@ -35,7 +35,7 @@ def search():
         if isbn_or_key == 'isbn':
             result = YuShuBook.search_by_isbn(q)
         else:
-            result = YuShuBook.search_by_keyword(q)
+            result = YuShuBook.search_by_keyword(q, page)
         # API
         return jsonify(result)  # 更为方便的返回方式
     else:

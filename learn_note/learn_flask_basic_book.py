@@ -3,8 +3,8 @@
 # @Time : 2020/2/23 08:39
 from flask import jsonify
 from learn_note.learn_flask_basic_fisher import app
-from helper import is_isbn_or_key
-from yushu_book import YuShuBook
+from app.libs.helper import is_isbn_or_key
+from app.spider.yushu_book import YuShuBook
 
 __author__ = '27'
 
