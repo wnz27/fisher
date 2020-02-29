@@ -9,8 +9,10 @@ app = Flask(__name__)
 # 请求上下文 对象 对Request的封装
 # Flask AppContext
 # Request RequestContext
-# 离线应用、单元测试，需要手动推入appcontext
-# 当有请求的时候，app会自动进入栈中，没有的时候，需要我们自己手动把app核心对象推入栈中。
+# 离线应用、单元测试，需要手动推入Appcontext
+# current_app是一直指向_app_ctx_stack栈顶的，request是指向_request_ctx_stack栈顶的，有请求进来就是进到这个栈里。
+# 当有请求的时候，app会自动进入栈中，这时候current_app就自动指向了app对象，
+# 没有请求的时候，需要我们自己手动把app核心对象推入栈中，让current_app指向当前的app核心对象。
 '''
 所谓上下文对象，是把核心对象和其他外部信息封装组合在一起的对象。
 故而我们想要使用Flask和Request这样的核心对象，请从AppContext和RequestContext中去拿核心对象。
@@ -88,7 +90,7 @@ class MyResource:
         你也可以返回False，依然在外面处理异常
         如果你没有return语句，在python里就是None，那也相当于False
         所以没返回语句就是相当于返回了False
-        可以断电查看，去掉return，依然会抛出异常
+        可以断点查看，去掉return，依然会抛出异常
         '''
         if tb:
             print("process exception!")

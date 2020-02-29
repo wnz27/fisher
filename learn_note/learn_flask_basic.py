@@ -13,7 +13,7 @@ app.config.from_object('config')
 
 我用print(app.config['Debug'])来打印，却出错了：
 Traceback (most recent call last):
-  File "learn_flask_basic.py", line 29, in <module>
+  File "learn_flask_线程隔离知识.py", line 29, in <module>
     print(app.config['Debug'])
 KeyError: 'Debug'
 
