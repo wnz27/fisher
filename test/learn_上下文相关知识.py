@@ -101,3 +101,4 @@ class MyResource:
 with MyResource() as resource:
     1/0
     resource.query()
+
