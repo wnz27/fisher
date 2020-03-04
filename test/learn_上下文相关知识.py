@@ -11,10 +11,11 @@ app = Flask(__name__)
 # Request RequestContext
 # 离线应用、单元测试，需要手动推入Appcontext
 # current_app是一直指向_app_ctx_stack栈顶的，request是指向_request_ctx_stack栈顶的，有请求进来就是进到这个栈里。
-# 当有请求的时候，app会自动进入栈中，这时候current_app就自动指向了app对象，
-# 没有请求的时候，需要我们自己手动把app核心对象推入栈中，让current_app指向当前的app核心对象。
+# 当有请求的时候，app会自动进入栈中，这时候current_app就自动指向了app对象，当请求结束时，它们会被弹出。
+# 没有请求的时候，如果要使用，则需要我们自己手动把app核心对象推入栈中，让current_app指向当前的app核心对象。
 '''
 所谓上下文对象，是把核心对象和其他外部信息封装组合在一起的对象。
+Flask的对象就作为属性封装在AppContext里，同理，Request的对象也作为属性封装在RequestContext里。
 故而我们想要使用Flask和Request这样的核心对象，请从AppContext和RequestContext中去拿核心对象。
 '''
 # ctx = app.app_context()

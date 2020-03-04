@@ -14,6 +14,13 @@ class YuShuBook:
     def search_by_isbn(cls, isbn):
         url = cls.isbn_url.format(isbn)   # self也可以访问到变量，因为链式查找
         result = HTTP.get(url)  # json在python会被转换成dict
+        '''伪码,实际工程要这么做，减少爬数据次数
+        book = query_from_mysql  #
+        if book:
+            return book
+        else:
+            save(result) 
+        '''
         return result
 
     @classmethod

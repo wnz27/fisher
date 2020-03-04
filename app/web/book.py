@@ -14,6 +14,21 @@ from app.forms.book import SearchForm
 
 __author__ = '27'
 
+# 测试非线程隔离对象的问题
+@web.route('/test')
+def test1():
+    from flask import request
+    from app.libs.none_local import n
+    print(n.v)
+    n.v = 2
+    print(n.v)
+    print("*" * 80)
+    print(getattr(request, 'v', None))  # getattr相比与.语法更好的灵活性和容错性
+    setattr(request, 'v', 2)
+    print(request.v)  # 这里肯定有值了
+    print("*" * 80)
+    return ''  # 视图函数必须返回值，否则会抛出异常。
+
 # 较为简单的接收客户端参数的方式
 @web.route('/book/search')
 def search():
