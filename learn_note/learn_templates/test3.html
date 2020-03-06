@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {{ super() }}
+    {{data.age, data['age']}}
+    {% if data.age < 27 %}
+        {{ data.name }}
+    {% elif data.age == 27 %}
+        do something else
+        {{ data | length() }}
+        {{ data.lala | default("我是二七，哈哈哈哈") }}
+        {% set messages_set = get_flashed_messages() %}  {# set变量将在所在block有效,foot的messages_set就无效 #}
+        set：{{ messages_set }}
+        {% with messages_with = get_flashed_messages() %}
+            with内的变量：{{ messages_with }}
+        {% endwith %}
+        你好啊, 我是with作用域外的变量：{{ messages_with }}
+        {#
+        default是当访问数据中不存在的值时使用的，而不是存在确没有值的情况。
+        也就是说，当第一个是不存在的值，传给default来判断，它才会决定是否输出自己的值。
+        如果存在这个属性，那么无论是什么都会被输出，即使这个属性的值是空，
+        如果没有这个属性，那么会输出default里的值。
+        #}
+        {# 像管道命令 #}
+    {% else %}
+        {{ data.age }}
+    {% endif %}
+{% endblock %}
+{% block foot %}
+    {{ messages_set }}
+{% endblock %}

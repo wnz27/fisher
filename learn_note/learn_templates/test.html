@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    二七
+    {{data.age, data['age']}}  {# jinjia统一了字典和对象的访问方式，比较推荐用点。 #}
+    {% if data.age < 27 %}
+        {{ data.name }}
+    {% elif data.age == 27 %}
+        do something else
+    {% else %}
+        {{ data.age }}
+    {% endif %}  {# 必须要有闭合语句 #}
+    {# if #} {# {% for in %} #}
+    {# 这是注释！！！ #}
+    {# jinja2，模板语言 #}
+</body>
+</html>

@@ -29,3 +29,6 @@ DEBUG = True
 # 数据库配置
 SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:123456@localhost:3306/fisher'
 
+# 秘钥
+SECRET_KEY = 'adfdf15151fadsfasdzcv^%*&@zqweada/ssdf/56asdfrewrq1/45435?32'
+

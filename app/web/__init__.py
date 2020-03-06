@@ -12,6 +12,12 @@ web = Blueprint('web', __package__)  # 也可以拆出去，解决循环引用�
 print(id(web))
 from . import book
 from . import user
+from . import auth
+from . import drift
+from . import gift
+from . import main
+from . import test
+from . import wish
 
 
 '''

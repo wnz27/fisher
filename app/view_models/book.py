@@ -15,6 +15,7 @@ class BookViewModel:
         self.pubdate = book['pubdate']
         self.binding = book['binding']
 
+    # 如果一个方法对数据处理且返回数据，不妨把它按照属性来看待，那么html模板里调用的时候就无需使用括号了，更方便适用与阅读
     @property
     def intro(self):
         intros = filter(lambda x: True if x else False,

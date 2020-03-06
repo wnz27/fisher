@@ -4,6 +4,6 @@
 __author__ = '27'
 from . import web
 
-@web.route('/url')
-def login():
-    pass
+# @web.route('/url')
+# def login():
+#     pass

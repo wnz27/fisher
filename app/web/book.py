@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # Create by 27
 # @Time : 2020/2/23 08:39
-from flask import jsonify, request, render_template
+from flask import jsonify, request, render_template, flash
 # request的args是不可变字典，可以通过下面方式转换成可变字典，request是代理模式实现的，
 # 在视图函数里使用的时候就是拿的到请求信息，在其他场景可能是空的。
 # a = request.args.to_dict()
@@ -52,25 +52,36 @@ def search():
         isbn_or_key = is_isbn_or_key(q)
         yushu_book = YuShuBook()
 
+        # Messaging Flash
         if isbn_or_key == 'isbn':
-            yushu_book = yushu_book.search_by_isbn(q)
+            yushu_book.search_by_isbn(q)
         else:
-            yushu_book = yushu_book.search_by_keyword(q, page)
-
+            yushu_book.search_by_keyword(q, page)
         books.fill(yushu_book, q)
         # API
-        return jsonify(books)  # 更为方便的返回方式
+        # return jsonify(books)  # 做api的话，更为方便的返回方式
     else:
-        return jsonify(form.errors)
+        flash("搜索的关键字不合要求，请重新输入！")
+        # return jsonify(form.errors)
+    return render_template('search_result.html', books=books, form=form)
+    # 这样就算不输入查询参数，也会返回东西，因为如果不输入查询参数，那么form的isvalid不会通过
+
+
+@web.route('/book/<isbn>/detail')
+def book_detail(isbn):
+    pass
+
 
 @web.route('/test')
 def test2():
     r = {
-        'name': '27',
+        'name': '',
         'age': 27
     }
     r1 = {
 
     }
+    flash("hello,27!", category="error")
+    flash("hello, 37!", category="warning")
     # 模板 html
-    return render_template('test.html', data=r, data1=r1)
+    return render_template('test3.html', data=r, data1=r1)

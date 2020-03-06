@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="test.css") }}">
+    {# 这样可以无视具体域名端口，是最方便的一种方法，换部署时候不用再手动调整静态文件的路径 #}
+</head>
+<body>
+    {% block head %}
+        <div>This is a head</div>
+    {% endblock %}
+
+    {% block content %}
+        this is content!
+    {% endblock %}
+
+    {% block foot %}
+        <div>This is a foot</div>
+    {% endblock %}
+</body>
+</html>
